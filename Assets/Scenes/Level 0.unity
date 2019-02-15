@@ -7508,9 +7508,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 514689d7696abac46a07a60c9bd8ef7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LeftAnchor: {fileID: 0}
-  m_RightAnchor: {fileID: 0}
-  m_HeadAnchor: {fileID: 0}
+  m_LeftAnchor: {fileID: 2018483459}
+  m_RightAnchor: {fileID: 469569098}
+  m_HeadAnchor: {fileID: 1055685440}
 --- !u!4 &1957220445
 Transform:
   m_ObjectHideFlags: 0
