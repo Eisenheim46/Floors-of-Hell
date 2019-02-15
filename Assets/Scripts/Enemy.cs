@@ -25,13 +25,15 @@ public class Enemy : MonoBehaviour {
 
             if (health == 0)
             {
+                navAgent.isStopped = true;
+
                 Destroy(gameObject);
             }
         }
     }
 
 	// Use this for initialization
-	void Start ()
+	void Awake ()
     {
         navAgent = GetComponent<NavMeshAgent>();
 	}
@@ -45,6 +47,11 @@ public class Enemy : MonoBehaviour {
     private void OnMouseDown()
     {
         Health -= 1;
+    }
+
+    private void OnDestroy()
+    {
+        
     }
 
 }

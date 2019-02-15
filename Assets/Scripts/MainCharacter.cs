@@ -8,6 +8,9 @@ public class MainCharacter : MonoBehaviour {
     /// Controls the Main Character is supposed to protect. Character uses the Unity Navigation Component to navigate through the level. 
     /// Designer can place points as to where the character should stop and where to continue next.
     /// </summary>
+    /// 
+    [SerializeField] private int health;
+
     [SerializeField] private Transform EndPoint; //Define the checkpoints in the inspector
 
     [SerializeField] private float moveSpeed; //Movement Speed of the character
@@ -16,6 +19,24 @@ public class MainCharacter : MonoBehaviour {
 
     private NavMeshAgent navAgent;
     private Animator animator;
+
+    public int Health
+    {
+        get
+        {
+            return health;
+        }
+
+        set
+        {
+            health = value;
+
+            if (health <= 0)
+            {
+
+            }
+        }
+    }
 
     private void Awake()
     {
@@ -51,6 +72,17 @@ public class MainCharacter : MonoBehaviour {
         else if (objectTag == "Event") //If it's an event
         {
             other.GetComponent<IEvents>().TriggerEvent(); //Trigger the event
+        }
+        else if (objectTag == "Enemy")
+        {
+            Vector3 enemyDirection = other.transform.position - transform.position;
+
+            if (Vector3.Dot(transform.forward, enemyDirection) > 0)
+            {
+                navAgent.isStopped = true;
+
+                characterAnimator.SetBool("Running", false);
+            }
         }
     }
 

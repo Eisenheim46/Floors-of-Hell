@@ -26,6 +26,13 @@ public class Destructable : MonoBehaviour
             {
                 MoveObstacle();
 
+                var eventComponent = GetComponent<IEvents>();
+
+                if (eventComponent != null)
+                {
+                    eventComponent.TriggerEvent();
+                }
+
                 Destroy (gameObject, 3);
             }
         }

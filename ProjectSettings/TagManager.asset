@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CheckPoint
   - Event
+  - Enemy
   layers:
   - Default
   - TransparentFX
