@@ -21,6 +21,7 @@ public class Pointer : MonoBehaviour
     private void Start()
     {
         SetLineColor();
+
     }
 
     private void OnDestroy()
