@@ -11,7 +11,8 @@ public class MainCharacter : MonoBehaviour {
     /// 
     [SerializeField] private int health;
 
-    [SerializeField] private Transform EndPoint; //Define the checkpoints in the inspector
+    [SerializeField] private Transform startPoint; //Define the start location
+    [SerializeField] private Transform endPoint; //Define the final destination in the inspector
 
     [SerializeField] private float moveSpeed; //Movement Speed of the character
 
@@ -47,16 +48,34 @@ public class MainCharacter : MonoBehaviour {
     {
         navAgent.speed = moveSpeed;
 
-        navAgent.SetDestination(EndPoint.position); //Update the character's destination
+        navAgent.SetDestination(endPoint.position); //Update the character's destination
     }
 
+    //Functions to control the main Character
     public void ContinueDestination()
     {
+        navAgent.SetDestination(endPoint.position);
+
+        navAgent.isStopped = false;
+
+        characterAnimator.SetBool("Running", true);
+    }
+    public void RetraceDestination()
+    {
+        navAgent.SetDestination(startPoint.position);
+
         navAgent.isStopped = false;
 
         characterAnimator.SetBool("Running", true);
     }
 
+    public void StopMainCharacter()
+    {
+        navAgent.isStopped = true;
+
+        characterAnimator.SetBool("Running", false);
+    }
+    //End Functions to control the main Character
 
     //Character will trigger the next navigation point as well as any events along the way
     private void OnTriggerEnter(Collider other)

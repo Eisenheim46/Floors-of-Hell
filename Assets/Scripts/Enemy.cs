@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour, IInteractable
+{
 
     [SerializeField] private Transform player;
     [SerializeField] private int health;
@@ -44,14 +45,18 @@ public class Enemy : MonoBehaviour {
         navAgent.SetDestination(player.position);
 	}
 
-    private void OnMouseDown()
+    //private void OnMouseDown()
+    //{
+    //    Health -= 1;
+    //}
+    public void OnOVRTriggerPressed()
     {
         Health -= 1;
     }
-
     private void OnDestroy()
     {
         
     }
+
 
 }

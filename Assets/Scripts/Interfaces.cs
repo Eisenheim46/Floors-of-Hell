@@ -6,3 +6,8 @@ public interface IEvents
 {
     void TriggerEvent();
 }
+
+public interface IInteractable
+{
+    void OnOVRTriggerPressed();
+}
