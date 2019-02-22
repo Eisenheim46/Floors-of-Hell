@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DoorWithPanels : MonoBehaviour
 {
-    [SerializeField] private MainCharacter character;
-
     private Transform obstacle;
 
     private int doorPanelsCount;
@@ -45,11 +43,11 @@ public class DoorWithPanels : MonoBehaviour
 
     private void MoveObstacle()
     {
-        Vector3 tempPosition = obstacle.position;
+        Vector3 tempPosition = obstacle.localPosition;
 
-        tempPosition.z = 9.1f;
+        tempPosition.z = 9.2f;
 
-        obstacle.position = tempPosition;
+        obstacle.localPosition = tempPosition;
 
         //checkpoint.GetComponent<Collider>().enabled = false;
     }

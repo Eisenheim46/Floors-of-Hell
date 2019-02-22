@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Destructable : MonoBehaviour
+public class Destructable : MonoBehaviour, IInteractable
 {
 
     [SerializeField] private int physicalHealth;
@@ -43,10 +43,6 @@ public class Destructable : MonoBehaviour
         obstacle = transform.parent;
     }
 
-    private void OnMouseDown()
-    {
-        ObstacleHealth--;
-    }
     private void MoveObstacle()
     {
         Vector3 tempPosition = obstacle.position;
@@ -58,5 +54,13 @@ public class Destructable : MonoBehaviour
         //checkpoint.GetComponent<Collider>().enabled = false;
     }
 
+    //private void OnMouseDown()
+    //{
+    //    ObstacleHealth--;
+    //}
 
+    public void OnOVRTriggerPressed()
+    {
+        ObstacleHealth--;
+    }
 }

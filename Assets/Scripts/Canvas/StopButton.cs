@@ -9,7 +9,8 @@ public class StopButton : MonoBehaviour, IInteractable
 
     public void OnOVRTriggerPressed()
     {
-        mainCharacter.StopMainCharacter();
+        //if (!mainCharacter.IsAtCheckPoint)
+            mainCharacter.StopMainCharacter();
 
         canvas.SetActive(false);
     }

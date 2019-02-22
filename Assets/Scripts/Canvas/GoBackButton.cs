@@ -9,7 +9,8 @@ public class GoBackButton : MonoBehaviour, IInteractable
 
     public void OnOVRTriggerPressed()
     {
-        mainCharacter.RetraceDestination();
+        //if (!mainCharacter.IsAtCheckPoint)
+            mainCharacter.RetraceDestination();
 
         canvas.SetActive(false);
     }

@@ -9,7 +9,8 @@ public class GoForwardButton : MonoBehaviour, IInteractable
 
     public void OnOVRTriggerPressed()
     {
-        mainCharacter.ContinueDestination();
+        if (!mainCharacter.IsAtCheckPoint)
+            mainCharacter.ContinueDestination();
 
         canvas.SetActive(false);
     }

@@ -2,21 +2,82 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
-public class Pointer : MonoBehaviour
+public class GunPointer : MonoBehaviour
 {
     [Header("Control Panel")]
     [SerializeField] private GameObject controlPanel = null;
 
     [Header("Pointer Variables")]
-    public float m_Distance = 8f;
+    public float m_Distance = 30f;
     public LineRenderer m_LineRenderer = null;
     public LayerMask m_EverythingMask = 0;
     public LayerMask m_InteractableMask = 0;
     public UnityAction<Vector3, GameObject> onPointerUpdate = null;
 
+    [Header("GunUI")]
+    [SerializeField] private int maxAmmoAmount;
+    [SerializeField] private Slider l_ReloadSlider;
+    [SerializeField] private Slider l_AmmoSlider;
+    [SerializeField] private Slider r_ReloadSlider;
+    [SerializeField] private Slider r_AmmoSlider;
+
+    private bool triggerReload = false;
+    private float reloadPercentage;
+    private int ammoAmount;
+
     private Transform m_CurrentOrigin = null;
     private GameObject m_CurrentObject = null;
+
+    //Properties
+    public int P_AmmoAmount
+    {
+        get
+        {
+            return ammoAmount;
+        }
+        set
+        {
+            ammoAmount = value;
+
+            if (r_AmmoSlider.IsActive())
+                r_AmmoSlider.value = value;
+            if (l_AmmoSlider.IsActive())
+                l_AmmoSlider.value = value;
+
+            if (ammoAmount <= 0)
+            {
+                triggerReload = true;
+            }
+
+        }
+    }
+    public float P_ReloadPercentage
+    {
+        get
+        {
+            return reloadPercentage;
+        }
+        set
+        {
+            reloadPercentage = value;
+
+            if (r_ReloadSlider.IsActive())
+                r_ReloadSlider.value = value;
+            if (l_ReloadSlider.IsActive())
+                l_ReloadSlider.value = value;
+
+            if (reloadPercentage >= 100)
+            {
+                reloadPercentage = 0;
+
+                P_AmmoAmount = maxAmmoAmount;
+
+                triggerReload = false;
+            }
+        }
+    }
 
     private void Awake()
     {
@@ -31,6 +92,15 @@ public class Pointer : MonoBehaviour
     {
         SetLineColor();
 
+        //Gun variables Initialize
+
+        l_AmmoSlider.maxValue = maxAmmoAmount;
+        r_AmmoSlider.maxValue = maxAmmoAmount;
+        l_ReloadSlider.maxValue = 100;
+        r_ReloadSlider.maxValue = 100;
+
+        P_ReloadPercentage = 100;
+        P_AmmoAmount = maxAmmoAmount;
     }
 
     private void OnDestroy()
@@ -44,12 +114,17 @@ public class Pointer : MonoBehaviour
 
     private void Update()
     {
+        //Create line and rays
         Vector3 hitPoint = UpdateLine();
 
         m_CurrentObject = UpdatePointerStatus();
 
         if (onPointerUpdate != null)
             onPointerUpdate(hitPoint, m_CurrentObject);
+
+        //Animate Reload
+        if (triggerReload)
+            P_ReloadPercentage += 50 * Time.deltaTime;
     }
 
     private Vector3 UpdateLine()
@@ -114,7 +189,7 @@ public class Pointer : MonoBehaviour
         if (!m_LineRenderer)
             return;
 
-        Color endColor = Color.red;
+        Color endColor = Color.white;
         endColor.a = 0f;
 
         m_LineRenderer.endColor = endColor;
@@ -131,17 +206,24 @@ public class Pointer : MonoBehaviour
         //Set control panel in front of camera and look at the camera
         controlPanel.SetActive(true);
         controlPanel.transform.position = mainCamera.position + (mainCamera.forward * 5);
-        controlPanel.transform.LookAt(mainCamera);
-
+        //controlPanel.transform.LookAt(-mainCamera.position);
+        controlPanel.transform.rotation = Quaternion.LookRotation(controlPanel.transform.position - mainCamera.position);
     }
 
     private void ProcessTriggerDown()
     {
-        if (!m_CurrentObject)
-            return;
+        if (P_AmmoAmount > 0)
+        {
+            //Decrease Ammo
+            P_AmmoAmount -= 1;
 
-        IInteractable interactable = m_CurrentObject.GetComponent<IInteractable>();
-        interactable.OnOVRTriggerPressed();
+            //Check if ray hits an object and trigger the interactable
+            if (!m_CurrentObject)
+                return;
+
+            IInteractable interactable = m_CurrentObject.GetComponent<IInteractable>();
+            interactable.OnOVRTriggerPressed();
+        }
     }
     //End Process Player Inputs
 }

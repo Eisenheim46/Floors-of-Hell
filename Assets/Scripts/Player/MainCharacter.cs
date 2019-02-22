@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class MainCharacter : MonoBehaviour {
     /// <summary>
@@ -9,8 +10,12 @@ public class MainCharacter : MonoBehaviour {
     /// Designer can place points as to where the character should stop and where to continue next.
     /// </summary>
     /// 
+    [Header("Character Properties")]
     [SerializeField] private int health;
+    [SerializeField] private Slider l_HealthSlider;
+    [SerializeField] private Slider r_HealthSlider;
 
+    [Header("Character Navigation")]
     [SerializeField] private Transform startPoint; //Define the start location
     [SerializeField] private Transform endPoint; //Define the final destination in the inspector
 
@@ -21,6 +26,7 @@ public class MainCharacter : MonoBehaviour {
     private NavMeshAgent navAgent;
     private Animator animator;
 
+    //Properties
     public int Health
     {
         get
@@ -32,12 +38,22 @@ public class MainCharacter : MonoBehaviour {
         {
             health = value;
 
+            if (r_HealthSlider.IsActive())
+                r_HealthSlider.value = health;
+
+            else if (l_HealthSlider.IsActive())
+                l_HealthSlider.value = health;
+
+
             if (health <= 0)
             {
-
+                characterAnimator.SetTrigger("Dead");
             }
         }
     }
+
+    public bool IsAtCheckPoint { get; set; }
+    //End Properties
 
     private void Awake()
     {
@@ -87,6 +103,8 @@ public class MainCharacter : MonoBehaviour {
             navAgent.isStopped = true;
 
             characterAnimator.SetBool("Running", false);
+
+            IsAtCheckPoint = true;
         }
         else if (objectTag == "Event") //If it's an event
         {
@@ -94,14 +112,18 @@ public class MainCharacter : MonoBehaviour {
         }
         else if (objectTag == "Enemy")
         {
-            Vector3 enemyDirection = other.transform.position - transform.position;
+            Vector3 enemyDirection = other.transform.position - transform.position; //collect direction of enemy
 
-            if (Vector3.Dot(transform.forward, enemyDirection) > 0)
+            if (Vector3.Dot(transform.forward, enemyDirection) > 0) //check if enemy is in front
             {
-                navAgent.isStopped = true;
+                navAgent.isStopped = true; //Stop Character
 
-                characterAnimator.SetBool("Running", false);
+                characterAnimator.SetBool("Running", false); //Stop Running Animation
             }
+
+            characterAnimator.SetTrigger("Damaged");
+            Health--; //For now take health once
+           // characterAnimator.ResetTrigger("Damaged");
         }
     }
 
@@ -114,6 +136,8 @@ public class MainCharacter : MonoBehaviour {
             navAgent.isStopped = false;
 
             characterAnimator.SetBool("Running", true);
+
+            IsAtCheckPoint = false;
         }
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Reticle : MonoBehaviour
 {
-    public Pointer m_Pointer;
+    public GunPointer m_Pointer;
     public SpriteRenderer m_CircleRenderer;
 
     public Sprite m_OpenSprite;
