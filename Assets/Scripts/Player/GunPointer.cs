@@ -16,19 +16,36 @@ public class GunPointer : MonoBehaviour
     public LayerMask m_InteractableMask = 0;
     public UnityAction<Vector3, GameObject> onPointerUpdate = null;
 
-    [Header("GunUI")]
+    [Header("Gun Properties")]
     [SerializeField] private int maxAmmoAmount;
+    [SerializeField] private float reloadSpeed;
+    [SerializeField] private GunSound gunSound;
+
+    [Header("Gun UI")]
+    [SerializeField] private Slider reticleReloadSlider;
+    [SerializeField] private Slider reticleAmmoSlider;
     [SerializeField] private Slider l_ReloadSlider;
     [SerializeField] private Slider l_AmmoSlider;
     [SerializeField] private Slider r_ReloadSlider;
     [SerializeField] private Slider r_AmmoSlider;
 
+    
+    //Pointer Variables
+    private Transform m_CurrentOrigin = null;
+    private GameObject m_CurrentObject = null;
+    //End Pointer Variables
+
+    //Gun UI Variables
     private bool triggerReload = false;
     private float reloadPercentage;
     private int ammoAmount;
+    //End GunUI Variables
 
-    private Transform m_CurrentOrigin = null;
-    private GameObject m_CurrentObject = null;
+    //Gun Sound
+
+    //End Gun Sound
+
+    
 
     //Properties
     public int P_AmmoAmount
@@ -41,10 +58,7 @@ public class GunPointer : MonoBehaviour
         {
             ammoAmount = value;
 
-            if (r_AmmoSlider.IsActive())
-                r_AmmoSlider.value = value;
-            if (l_AmmoSlider.IsActive())
-                l_AmmoSlider.value = value;
+            UpdateGunAmmoUI(value);
 
             if (ammoAmount <= 0)
             {
@@ -63,10 +77,7 @@ public class GunPointer : MonoBehaviour
         {
             reloadPercentage = value;
 
-            if (r_ReloadSlider.IsActive())
-                r_ReloadSlider.value = value;
-            if (l_ReloadSlider.IsActive())
-                l_ReloadSlider.value = value;
+            UpdateGunReloadSliderUI(value);
 
             if (reloadPercentage >= 100)
             {
@@ -93,6 +104,8 @@ public class GunPointer : MonoBehaviour
         SetLineColor();
 
         //Gun variables Initialize
+        reticleReloadSlider.maxValue = 100;
+        reticleAmmoSlider.maxValue = maxAmmoAmount;
 
         l_AmmoSlider.maxValue = maxAmmoAmount;
         r_AmmoSlider.maxValue = maxAmmoAmount;
@@ -124,9 +137,11 @@ public class GunPointer : MonoBehaviour
 
         //Animate Reload
         if (triggerReload)
-            P_ReloadPercentage += 50 * Time.deltaTime;
+            P_ReloadPercentage += reloadSpeed * Time.deltaTime;
     }
 
+
+    //Process Pointer and Ray
     private Vector3 UpdateLine()
     {
         //Create ray
@@ -194,7 +209,7 @@ public class GunPointer : MonoBehaviour
 
         m_LineRenderer.endColor = endColor;
     }
-
+    ///End Process Pointer and Ray
 
 
     //Process Player Inputs
@@ -206,7 +221,6 @@ public class GunPointer : MonoBehaviour
         //Set control panel in front of camera and look at the camera
         controlPanel.SetActive(true);
         controlPanel.transform.position = mainCamera.position + (mainCamera.forward * 5);
-        //controlPanel.transform.LookAt(-mainCamera.position);
         controlPanel.transform.rotation = Quaternion.LookRotation(controlPanel.transform.position - mainCamera.position);
     }
 
@@ -214,6 +228,9 @@ public class GunPointer : MonoBehaviour
     {
         if (P_AmmoAmount > 0)
         {
+            //Play Sound
+            gunSound.playShotClip();
+
             //Decrease Ammo
             P_AmmoAmount -= 1;
 
@@ -221,9 +238,35 @@ public class GunPointer : MonoBehaviour
             if (!m_CurrentObject)
                 return;
 
+            //Call Interactable Trigger Function
             IInteractable interactable = m_CurrentObject.GetComponent<IInteractable>();
             interactable.OnOVRTriggerPressed();
         }
     }
     //End Process Player Inputs
+
+
+    //Process GunUI
+    private void UpdateGunReloadSliderUI(float value)
+    {
+        reticleReloadSlider.value = value;
+
+        //Update the active reload UI
+        if (r_ReloadSlider.IsActive())
+            r_ReloadSlider.value = value;
+        if (l_ReloadSlider.IsActive())
+            l_ReloadSlider.value = value;
+    }
+
+    private void UpdateGunAmmoUI(float value)
+    {
+        reticleAmmoSlider.value = value;
+
+        //Update the active ammo UI
+        if (r_AmmoSlider.IsActive())
+            r_AmmoSlider.value = value;
+        if (l_AmmoSlider.IsActive())
+            l_AmmoSlider.value = value;
+    }
+    //End Process GunUI
 }

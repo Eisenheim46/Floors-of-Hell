@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Reticle : MonoBehaviour
 {
     public GunPointer m_Pointer;
-    public SpriteRenderer m_CircleRenderer;
+    [SerializeField] private Image m_CircleRenderer;
+    //public SpriteRenderer m_CircleRenderer;
 
     public Sprite m_OpenSprite;
     public Sprite m_ClosedSprite;
@@ -22,7 +24,7 @@ public class Reticle : MonoBehaviour
 
     private void Update()
     {
-        transform.LookAt(m_Camera.gameObject.transform);
+        transform.rotation = Quaternion.LookRotation(transform.position - m_Camera.transform.position);
     }
 
     private void OnDestroy()

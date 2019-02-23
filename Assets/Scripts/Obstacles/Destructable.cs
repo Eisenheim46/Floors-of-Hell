@@ -45,22 +45,17 @@ public class Destructable : MonoBehaviour, IInteractable
 
     private void MoveObstacle()
     {
-        Vector3 tempPosition = obstacle.position;
+        Vector3 tempPosition = obstacle.localPosition;
 
         tempPosition.z = 9.1f;
 
-        obstacle.position = tempPosition;
+        obstacle.localPosition = tempPosition;
 
         //checkpoint.GetComponent<Collider>().enabled = false;
     }
 
-    //private void OnMouseDown()
-    //{
-    //    ObstacleHealth--;
-    //}
-
     public void OnOVRTriggerPressed()
     {
-        ObstacleHealth--;
+        ObstacleHealth -= 1;
     }
 }
