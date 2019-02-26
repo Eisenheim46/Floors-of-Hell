@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnEnemies : MonoBehaviour, IEvents
+public class Contingency_0 : MonoBehaviour, IEvents
 {
 
-    [Header("Enemies")]
-    [SerializeField] private GameObject[] enemies;
+    [SerializeField] private ContingencyDoor door;
 
+    [SerializeField] private GameObject[] enemies;
 
     private void Start()
     {
@@ -19,6 +19,8 @@ public class SpawnEnemies : MonoBehaviour, IEvents
 
     public void TriggerEvent()
     {
+        door.enabled = true;
+
         foreach (GameObject enemy in enemies)
         {
             enemy.SetActive(true);
@@ -26,6 +28,4 @@ public class SpawnEnemies : MonoBehaviour, IEvents
 
         GetComponent<Collider>().enabled = false;
     }
-
-
 }

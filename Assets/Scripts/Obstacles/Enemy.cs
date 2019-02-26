@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour, IInteractable
 {
-
+    [SerializeField] private Transform enemyList;
     [SerializeField] private Transform player;
     [SerializeField] private int health;
 
@@ -38,9 +38,15 @@ public class Enemy : MonoBehaviour, IInteractable
     {
         navAgent = GetComponent<NavMeshAgent>();
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    private void Start()
+    {
+        //Move to the Enemy List
+        transform.parent = enemyList;
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
         navAgent.SetDestination(player.position);
 	}

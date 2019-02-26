@@ -10,7 +10,7 @@ public class GunPointer : MonoBehaviour
     [SerializeField] private GameObject controlPanel = null;
 
     [Header("Pointer Variables")]
-    public float m_Distance = 30f;
+    public float m_Distance = 13f;
     public LineRenderer m_LineRenderer = null;
     public LayerMask m_EverythingMask = 0;
     public LayerMask m_InteractableMask = 0;
@@ -22,12 +22,14 @@ public class GunPointer : MonoBehaviour
     [SerializeField] private GunSound gunSound;
 
     [Header("Gun UI")]
+    //Reticle Sided UI
     [SerializeField] private Slider reticleReloadSlider;
     [SerializeField] private Slider reticleAmmoSlider;
+    //Controller Sided UI
     [SerializeField] private Slider l_ReloadSlider;
-    [SerializeField] private Slider l_AmmoSlider;
+    [SerializeField] private Text l_AmmoText;
     [SerializeField] private Slider r_ReloadSlider;
-    [SerializeField] private Slider r_AmmoSlider;
+    [SerializeField] private Text r_AmmoText;
 
     
     //Pointer Variables
@@ -107,8 +109,8 @@ public class GunPointer : MonoBehaviour
         reticleReloadSlider.maxValue = 100;
         reticleAmmoSlider.maxValue = maxAmmoAmount;
 
-        l_AmmoSlider.maxValue = maxAmmoAmount;
-        r_AmmoSlider.maxValue = maxAmmoAmount;
+        l_AmmoText.text = maxAmmoAmount.ToString();
+        r_AmmoText.text = maxAmmoAmount.ToString();
         l_ReloadSlider.maxValue = 100;
         r_ReloadSlider.maxValue = 100;
 
@@ -243,7 +245,7 @@ public class GunPointer : MonoBehaviour
             interactable.OnOVRTriggerPressed();
         }
     }
-    //End Process Player Inputs
+    ///End Process Player Inputs
 
 
     //Process GunUI
@@ -263,10 +265,10 @@ public class GunPointer : MonoBehaviour
         reticleAmmoSlider.value = value;
 
         //Update the active ammo UI
-        if (r_AmmoSlider.IsActive())
-            r_AmmoSlider.value = value;
-        if (l_AmmoSlider.IsActive())
-            l_AmmoSlider.value = value;
+        if (r_AmmoText.IsActive())
+            r_AmmoText.text = value.ToString();
+        if (l_AmmoText.IsActive())
+            l_AmmoText.text = value.ToString();
     }
     //End Process GunUI
 }

@@ -5,9 +5,13 @@ using UnityEngine;
 public class Destructable : MonoBehaviour, IInteractable
 {
 
+    [Header("Move Obstacle When Completed")]
+    [SerializeField] private bool moveOnZ;
+    [SerializeField] private float moveAmount;
+
+    [Header("Unique Attributes")]
     [SerializeField] private int physicalHealth;
 
-    [SerializeField] private MainCharacter character;
 
     private Transform obstacle;
 
@@ -45,11 +49,14 @@ public class Destructable : MonoBehaviour, IInteractable
 
     private void MoveObstacle()
     {
-        Vector3 tempPosition = obstacle.localPosition;
+        Vector3 tempPosition = obstacle.position;
 
-        tempPosition.z = 9.1f;
+        if (moveOnZ)
+            tempPosition.z += moveAmount;
+        else
+            tempPosition.x += moveAmount;
 
-        obstacle.localPosition = tempPosition;
+        obstacle.position = tempPosition;
 
         //checkpoint.GetComponent<Collider>().enabled = false;
     }

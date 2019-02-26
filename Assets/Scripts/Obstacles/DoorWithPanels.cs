@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class DoorWithPanels : MonoBehaviour
 {
+    [Header("Move Obstacle When Completed")]
+    [SerializeField] private bool moveOnZ;
+    [SerializeField] private float moveAmount;
+
+
     private Transform obstacle;
 
     private int doorPanelsCount;
@@ -43,11 +48,14 @@ public class DoorWithPanels : MonoBehaviour
 
     private void MoveObstacle()
     {
-        Vector3 tempPosition = obstacle.localPosition;
+        Vector3 tempPosition = obstacle.position;
 
-        tempPosition.z = 9.2f;
+        if (moveOnZ)
+            tempPosition.z += moveAmount;
+        else
+            tempPosition.x += moveAmount;
 
-        obstacle.localPosition = tempPosition;
+        obstacle.position = tempPosition;
 
         //checkpoint.GetComponent<Collider>().enabled = false;
     }
