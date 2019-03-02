@@ -20,18 +20,20 @@ public class GunPointer : MonoBehaviour
     [SerializeField] private int maxAmmoAmount;
     [SerializeField] private float reloadSpeed;
     [SerializeField] private GunSound gunSound;
+    [SerializeField] private GunAnimationHandler left_Gun;
+    [SerializeField] private GunAnimationHandler right_Gun;
 
     [Header("Gun UI")]
     //Reticle Sided UI
     [SerializeField] private Slider reticleReloadSlider;
     [SerializeField] private Slider reticleAmmoSlider;
     //Controller Sided UI
-    [SerializeField] private Slider l_ReloadSlider;
-    [SerializeField] private Text l_AmmoText;
-    [SerializeField] private Slider r_ReloadSlider;
-    [SerializeField] private Text r_AmmoText;
+    [SerializeField] private Slider left_ReloadSlider;
+    [SerializeField] private Text left_AmmoText;
+    [SerializeField] private Slider right_ReloadSlider;
+    [SerializeField] private Text right_AmmoText;
 
-    
+
     //Pointer Variables
     private Transform m_CurrentOrigin = null;
     private GameObject m_CurrentObject = null;
@@ -47,7 +49,7 @@ public class GunPointer : MonoBehaviour
 
     //End Gun Sound
 
-    
+
 
     //Properties
     public int P_AmmoAmount
@@ -65,6 +67,8 @@ public class GunPointer : MonoBehaviour
             if (ammoAmount <= 0)
             {
                 triggerReload = true;
+
+                AnimateGunReload();
             }
 
         }
@@ -109,10 +113,10 @@ public class GunPointer : MonoBehaviour
         reticleReloadSlider.maxValue = 100;
         reticleAmmoSlider.maxValue = maxAmmoAmount;
 
-        l_AmmoText.text = maxAmmoAmount.ToString();
-        r_AmmoText.text = maxAmmoAmount.ToString();
-        l_ReloadSlider.maxValue = 100;
-        r_ReloadSlider.maxValue = 100;
+        left_AmmoText.text = maxAmmoAmount.ToString();
+        right_AmmoText.text = maxAmmoAmount.ToString();
+        left_ReloadSlider.maxValue = 100;
+        right_ReloadSlider.maxValue = 100;
 
         P_ReloadPercentage = 100;
         P_AmmoAmount = maxAmmoAmount;
@@ -169,7 +173,7 @@ public class GunPointer : MonoBehaviour
         m_CurrentOrigin = controllerObject.transform;
 
         //Is the laser visible
-        if(controller == OVRInput.Controller.Touchpad)
+        if (controller == OVRInput.Controller.Touchpad)
         {
             m_LineRenderer.enabled = false;
         }
@@ -183,7 +187,7 @@ public class GunPointer : MonoBehaviour
     {
         //Create ray
         RaycastHit hit = CreateRaycast(m_InteractableMask);
-        
+
         //Check hit
         if (hit.collider)
             return hit.collider.gameObject;
@@ -230,6 +234,9 @@ public class GunPointer : MonoBehaviour
     {
         if (P_AmmoAmount > 0)
         {
+            //Animate Gun
+            AnimateGunFire();
+
             //Play Sound
             gunSound.playShotClip();
 
@@ -254,10 +261,11 @@ public class GunPointer : MonoBehaviour
         reticleReloadSlider.value = value;
 
         //Update the active reload UI
-        if (r_ReloadSlider.IsActive())
-            r_ReloadSlider.value = value;
-        if (l_ReloadSlider.IsActive())
-            l_ReloadSlider.value = value;
+        if (right_ReloadSlider.IsActive())
+            right_ReloadSlider.value = value;
+
+        if (left_ReloadSlider.IsActive())
+            left_ReloadSlider.value = value;
     }
 
     private void UpdateGunAmmoUI(float value)
@@ -265,10 +273,33 @@ public class GunPointer : MonoBehaviour
         reticleAmmoSlider.value = value;
 
         //Update the active ammo UI
-        if (r_AmmoText.IsActive())
-            r_AmmoText.text = value.ToString();
-        if (l_AmmoText.IsActive())
-            l_AmmoText.text = value.ToString();
+        if (right_AmmoText.IsActive())
+            right_AmmoText.text = value.ToString();
+
+        if (left_AmmoText.IsActive())
+            left_AmmoText.text = value.ToString();
+    }
+    //End Process GunUI
+
+    //Process Gun Animation
+    private void AnimateGunFire()
+    {
+        //Animate the active Gun
+        if (right_Gun.enabled == true)
+            right_Gun.AnimateGunFire();
+
+        if (left_Gun.enabled == true)
+            left_Gun.AnimateGunFire();
+    }
+
+    private void AnimateGunReload()
+    {
+        //Animate the active Gun
+        if (right_Gun.enabled == true)
+            right_Gun.AnimateGunReload();
+
+        if (left_Gun.enabled == true)
+            left_Gun.AnimateGunReload();
     }
     //End Process GunUI
 }
