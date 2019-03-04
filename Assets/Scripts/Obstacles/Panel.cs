@@ -5,18 +5,30 @@ using UnityEngine;
 public class Panel : MonoBehaviour, IInteractable
 {
 
-    //private void OnMouseDown()
-    //{
-    //    transform.parent.GetComponent<DoorWithPanels>().DoorPanelsCount -= 1;
+    private ParticleSystem sparks;
 
-    //    Destroy(gameObject);
-    //}
+    private Collider panelCollider;
+    private MeshRenderer panelMesh;
 
+    private void Awake()
+    {
+        sparks = transform.GetComponentInChildren<ParticleSystem>();
+
+        panelCollider = GetComponent<Collider>();
+        panelMesh = GetComponent<MeshRenderer>();
+    }
+
+    //Interface Implementation
     public void OnOVRTriggerPressed()
     {
         transform.parent.GetComponent<DoorWithPanels>().DoorPanelsCount -= 1;
 
-        Destroy(gameObject);
+        panelCollider.enabled = false;
+        panelMesh.enabled = false;
+
+        sparks.Play();
+
+        Destroy(gameObject, 5);
     }
 
 }

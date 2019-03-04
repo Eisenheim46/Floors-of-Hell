@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GunAnimationHandler : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem muzzleParticle;
 
     private Animator gunAnimator;
 
@@ -18,6 +19,8 @@ public class GunAnimationHandler : MonoBehaviour
     public void AnimateGunFire()
     {
         gunAnimator.SetTrigger("Shoot");
+
+        muzzleParticle.Play();
     }
 
     public void AnimateGunReload()
