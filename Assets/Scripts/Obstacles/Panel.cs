@@ -6,6 +6,7 @@ public class Panel : MonoBehaviour, IInteractable
 {
 
     private ParticleSystem sparks;
+    private AudioSource destroySound;
 
     private Collider panelCollider;
     private MeshRenderer panelMesh;
@@ -13,6 +14,7 @@ public class Panel : MonoBehaviour, IInteractable
     private void Awake()
     {
         sparks = transform.GetComponentInChildren<ParticleSystem>();
+        destroySound = GetComponent<AudioSource>();
 
         panelCollider = GetComponent<Collider>();
         panelMesh = GetComponent<MeshRenderer>();
@@ -27,6 +29,7 @@ public class Panel : MonoBehaviour, IInteractable
         panelMesh.enabled = false;
 
         sparks.Play();
+        destroySound.Play();
 
         Destroy(gameObject, 5);
     }
