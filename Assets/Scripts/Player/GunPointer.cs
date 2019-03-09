@@ -102,6 +102,7 @@ public class GunPointer : MonoBehaviour
 
         //Input Functions
         PlayerInput.OnTouchPadDown += ProcessTouchPadDown;
+        PlayerInput.OnTouchPadUp += ProcessTouchPadUp;
         PlayerInput.OnTriggerDown += ProcessTriggerDown;
     }
 
@@ -128,6 +129,7 @@ public class GunPointer : MonoBehaviour
 
         //Input Functions
         PlayerInput.OnTouchPadDown -= ProcessTouchPadDown;
+        PlayerInput.OnTouchPadUp -= ProcessTouchPadUp;
         PlayerInput.OnTriggerDown -= ProcessTriggerDown;
     }
 
@@ -228,6 +230,11 @@ public class GunPointer : MonoBehaviour
         controlPanel.SetActive(true);
         controlPanel.transform.position = mainCamera.position + (mainCamera.forward * 5);
         controlPanel.transform.rotation = Quaternion.LookRotation(controlPanel.transform.position - mainCamera.position);
+    }
+
+    private void ProcessTouchPadUp()
+    {
+        controlPanel.SetActive(false);
     }
 
     private void ProcessTriggerDown()

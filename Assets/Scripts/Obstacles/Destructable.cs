@@ -14,6 +14,7 @@ public class Destructable : MonoBehaviour, IInteractable
 
 
     private Transform obstacle;
+    private AudioSource impactSound;
 
     public int ObstacleHealth
     {
@@ -45,6 +46,8 @@ public class Destructable : MonoBehaviour, IInteractable
     private void Awake()
     {
         obstacle = transform.parent;
+
+        impactSound = GetComponent<AudioSource>();
     }
 
     private void MoveObstacle()
@@ -64,5 +67,7 @@ public class Destructable : MonoBehaviour, IInteractable
     public void OnOVRTriggerPressed()
     {
         ObstacleHealth -= 1;
+
+        impactSound.Play();
     }
 }

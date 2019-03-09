@@ -85,6 +85,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Input()
     {
+
         if (OVRInput.GetDown(OVRInput.Button.PrimaryTouchpad))
         {
             if (OnTouchPadDown != null)
