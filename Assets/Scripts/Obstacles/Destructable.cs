@@ -11,10 +11,13 @@ public class Destructable : MonoBehaviour, IInteractable
 
     [Header("Unique Attributes")]
     [SerializeField] private int physicalHealth;
+    [SerializeField] private ParticleSystem explosionParticle;
+    [SerializeField] private AudioClip hitSoundClip;
+    [SerializeField] private AudioClip destroyedSoundClip;
 
 
     private Transform obstacle;
-    private AudioSource impactSound;
+    private AudioSource objectSound;
 
     public int ObstacleHealth
     {
@@ -38,7 +41,12 @@ public class Destructable : MonoBehaviour, IInteractable
                     eventComponent.TriggerEvent();
                 }
 
-                Destroy (gameObject, 3);
+                explosionParticle.Play();
+
+                objectSound.clip = destroyedSoundClip;
+                objectSound.Play();
+
+                Destroy (gameObject, 5);
             }
         }
     }
@@ -47,7 +55,8 @@ public class Destructable : MonoBehaviour, IInteractable
     {
         obstacle = transform.parent;
 
-        impactSound = GetComponent<AudioSource>();
+        objectSound = GetComponent<AudioSource>();
+        objectSound.clip = hitSoundClip;
     }
 
     private void MoveObstacle()
@@ -68,6 +77,6 @@ public class Destructable : MonoBehaviour, IInteractable
     {
         ObstacleHealth -= 1;
 
-        impactSound.Play();
+        objectSound.Play();
     }
 }

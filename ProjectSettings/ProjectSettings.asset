@@ -789,7 +789,7 @@ PlayerSettings:
   apiCompatibilityLevel: 2
   cloudProjectId: 83d11457-8412-45bf-ac7a-1d4792d4857d
   framebufferDepthMemorylessMode: 0
-  projectName: EffectsExamples
+  projectName: VR rail gun
   organizationId: eisenheim46
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
