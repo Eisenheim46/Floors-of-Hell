@@ -12,6 +12,6 @@ public class StopButton : MonoBehaviour, IInteractable
         //if (!mainCharacter.IsAtCheckPoint)
             mainCharacter.StopMainCharacter();
 
-        canvas.SetActive(false);
+       // canvas.SetActive(false);
     }
 }

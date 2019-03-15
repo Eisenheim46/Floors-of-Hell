@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CancelButton : MonoBehaviour, IInteractable
+public class ReloadButton : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject canvas;
+    [SerializeField] private GunPointer gun;
 
     public void OnOVRTriggerPressed()
     {
-        canvas.SetActive(false);
+
+        gun.ManualGunReload();
+        //canvas.SetActive(false);
     }
 
 }

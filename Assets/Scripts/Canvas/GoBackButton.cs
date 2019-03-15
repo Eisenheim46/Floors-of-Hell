@@ -12,6 +12,6 @@ public class GoBackButton : MonoBehaviour, IInteractable
         //if (!mainCharacter.IsAtCheckPoint)
             mainCharacter.RetraceDestination();
 
-        canvas.SetActive(false);
+        //canvas.SetActive(false);
     }
 }

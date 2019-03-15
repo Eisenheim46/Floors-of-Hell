@@ -240,10 +240,8 @@ public class GunPointer : MonoBehaviour
             IInteractable interactable = m_CurrentObject.GetComponent<IInteractable>();
             interactable.OnOVRTriggerPressed();
         }
-        else
-        {
-            controlPanel.SetActive(false);
-        }
+
+        controlPanel.SetActive(false);
             
     }
 
@@ -319,4 +317,11 @@ public class GunPointer : MonoBehaviour
             left_Gun.AnimateGunReload();
     }
     //End Process GunUI
+
+    public void ManualGunReload()
+    {
+        reloadPercentage = 0;
+
+        triggerReload = true;
+    }
 }

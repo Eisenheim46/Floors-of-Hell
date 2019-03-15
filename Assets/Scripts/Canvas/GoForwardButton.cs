@@ -12,6 +12,6 @@ public class GoForwardButton : MonoBehaviour, IInteractable
         if (!mainCharacter.IsAtCheckPoint)
             mainCharacter.ContinueDestination();
 
-        canvas.SetActive(false);
+       // canvas.SetActive(false);
     }
 }
