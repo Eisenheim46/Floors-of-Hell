@@ -234,15 +234,20 @@ public class GunPointer : MonoBehaviour
 
     private void ProcessTouchPadUp()
     {
-        if(m_CurrentObject.tag == "Button") //Check if Button to avoid simulating a shooting interaction
+        if (m_CurrentObject != null)
         {
-            //Call Interactable Trigger Function on the button
-            IInteractable interactable = m_CurrentObject.GetComponent<IInteractable>();
-            interactable.OnOVRTriggerPressed();
+            if (m_CurrentObject.tag == "Button") //Check if Button to avoid simulating a shooting interaction
+
+            {
+                //Call Interactable Trigger Function on the button
+                IInteractable interactable = m_CurrentObject.GetComponent<IInteractable>();
+                interactable.OnOVRTriggerPressed();
+
+            }
         }
 
         controlPanel.SetActive(false);
-            
+     
     }
 
     private void ProcessTriggerDown()
