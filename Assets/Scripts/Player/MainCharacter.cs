@@ -62,6 +62,8 @@ public class MainCharacter : MonoBehaviour {
 
     private void Start()
     {
+        characterAnimator.SetBool("Running", true);
+
         navAgent.speed = moveSpeed;
 
         navAgent.SetDestination(endPoint.position); //Update the character's destination
