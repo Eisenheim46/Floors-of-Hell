@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlPanel: {fileID: 3382849083110924399}
-  m_Distance: 13
+  m_Distance: 18
   m_LineRenderer: {fileID: 3382849081433641242}
   m_EverythingMask:
     serializedVersion: 2
@@ -328,7 +328,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   maxAmmoAmount: 8
-  reloadSpeed: 50
+  reloadSpeed: 35
   gunSound: {fileID: 3382849083083574167}
   left_Gun: {fileID: 0}
   right_Gun: {fileID: 0}
@@ -866,11 +866,12 @@ AudioSource:
   m_GameObject: {fileID: 3382849083083574165}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243982053602094152, guid: 6127dfa499fa8104aa9b73dc0575567a,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -965,8 +966,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d17aee2421eea4b42bd840bab92c29a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotClip: {fileID: 8300000, guid: cf46bba3ee5f24349853efa367d57dbf, type: 3}
-  reloadClip: {fileID: 0}
+  shotClip: {fileID: 8300000, guid: ff9b539a61c412546aee25bcc2fba4b0, type: 3}
+  reloadClip: {fileID: 8300000, guid: 221dd2bd460d80947baaebe39ec2845b, type: 3}
 --- !u!1 &3382849083137420832
 GameObject:
   m_ObjectHideFlags: 0

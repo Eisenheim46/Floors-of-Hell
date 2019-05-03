@@ -68,6 +68,8 @@ public class GunPointer : MonoBehaviour
             {
                 triggerReload = true;
 
+                gunSound.PlayReloadClip();
+
                 AnimateGunReload();
             }
 
@@ -95,6 +97,7 @@ public class GunPointer : MonoBehaviour
             }
         }
     }
+    //End Properties
 
     private void Awake()
     {
@@ -258,7 +261,7 @@ public class GunPointer : MonoBehaviour
             AnimateGunFire();
 
             //Play Sound
-            gunSound.playShotClip();
+            gunSound.PlayShotClip();
 
             //Decrease Ammo
             P_AmmoAmount -= 1;
@@ -328,5 +331,7 @@ public class GunPointer : MonoBehaviour
         reloadPercentage = 0;
 
         triggerReload = true;
+
+        gunSound.PlayReloadClip();
     }
 }

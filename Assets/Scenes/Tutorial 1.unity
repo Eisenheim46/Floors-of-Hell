@@ -8038,17 +8038,6 @@ PrefabInstance:
       propertyPath: mainCharacter
       value: 
       objectReference: {fileID: 511667194}
-    - target: {fileID: 3382849083083574166, guid: 579734d5b5f535f489726eb4067d1365,
-        type: 3}
-      propertyPath: m_Pitch
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382849083083574166, guid: 579734d5b5f535f489726eb4067d1365,
-        type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 243982053602094152, guid: 6127dfa499fa8104aa9b73dc0575567a,
-        type: 2}
     - target: {fileID: 3382849081688729257, guid: 579734d5b5f535f489726eb4067d1365,
         type: 3}
       propertyPath: m_IsActive

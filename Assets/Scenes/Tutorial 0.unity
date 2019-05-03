@@ -7496,13 +7496,13 @@ PrefabInstance:
     - target: {fileID: 133541592862275683, guid: 37ad01ff573911b49bb97d28bd532645,
         type: 3}
       propertyPath: moveAmount
-      value: 1.2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 133541592862275683, guid: 37ad01ff573911b49bb97d28bd532645,
         type: 3}
       propertyPath: hitSoundClip
       value: 
-      objectReference: {fileID: 8300000, guid: a22b14ab7957e7e4d8a5cf24fe98121b, type: 3}
+      objectReference: {fileID: 8300000, guid: 2964f415d466988458713878dbd2004d, type: 3}
     - target: {fileID: 133541592862275683, guid: 37ad01ff573911b49bb97d28bd532645,
         type: 3}
       propertyPath: destroyedSoundClip
@@ -8626,17 +8626,6 @@ PrefabInstance:
       propertyPath: mainCharacter
       value: 
       objectReference: {fileID: 511667194}
-    - target: {fileID: 3382849083083574166, guid: 579734d5b5f535f489726eb4067d1365,
-        type: 3}
-      propertyPath: m_Pitch
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382849083083574166, guid: 579734d5b5f535f489726eb4067d1365,
-        type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 243982053602094152, guid: 6127dfa499fa8104aa9b73dc0575567a,
-        type: 2}
     - target: {fileID: 3382849081688729257, guid: 579734d5b5f535f489726eb4067d1365,
         type: 3}
       propertyPath: m_IsActive

@@ -49,6 +49,8 @@ public class ContingencyDoor : MonoBehaviour
     {
         enemyListCount = CountEnemies();
 
+        Debug.Log(enemyListCount);
+
         if (enemyListCount <= 0)
         {
             this.enabled = false;

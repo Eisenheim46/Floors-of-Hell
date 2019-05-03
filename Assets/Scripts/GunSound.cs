@@ -15,14 +15,14 @@ public class GunSound : MonoBehaviour
     }
 
 
-    public void playShotClip()
+    public void PlayShotClip()
     {
         audioSource.clip = shotClip;
 
         audioSource.Play();
     }
 
-    public void playReloadClip()
+    public void PlayReloadClip()
     {
         audioSource.clip = reloadClip;
 
