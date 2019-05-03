@@ -328,14 +328,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   maxAmmoAmount: 8
-  reloadSpeed: 75
+  reloadSpeed: 50
   gunSound: {fileID: 3382849083083574167}
+  left_Gun: {fileID: 0}
+  right_Gun: {fileID: 0}
   reticleReloadSlider: {fileID: 3382849082539989192}
   reticleAmmoSlider: {fileID: 3382849082594939418}
-  l_ReloadSlider: {fileID: 0}
-  l_AmmoText: {fileID: 0}
-  r_ReloadSlider: {fileID: 0}
-  r_AmmoText: {fileID: 0}
+  left_ReloadSlider: {fileID: 0}
+  left_AmmoText: {fileID: 0}
+  right_ReloadSlider: {fileID: 0}
+  right_AmmoText: {fileID: 0}
 --- !u!1 &3382849082190837640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,17 +1163,17 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 9095859359943074957, guid: f0d36237bf66ab7439dd0530d03314e8,
-        type: 3}
-      propertyPath: mainCharacter
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 9095859360207981257, guid: f0d36237bf66ab7439dd0530d03314e8,
         type: 3}
       propertyPath: mainCharacter
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9095859359776474308, guid: f0d36237bf66ab7439dd0530d03314e8,
+        type: 3}
+      propertyPath: mainCharacter
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095859359943074957, guid: f0d36237bf66ab7439dd0530d03314e8,
         type: 3}
       propertyPath: mainCharacter
       value: 
