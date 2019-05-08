@@ -391,6 +391,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: OVRCameraRig
       objectReference: {fileID: 0}
+    - target: {fileID: 4337332493628711272, guid: 3c0e384da974e324baaf689d858f46bb,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337332493628711272, guid: 3c0e384da974e324baaf689d858f46bb,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337332493628711272, guid: 3c0e384da974e324baaf689d858f46bb,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8143007506700410433, guid: 3c0e384da974e324baaf689d858f46bb,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8143007506700410433, guid: 3c0e384da974e324baaf689d858f46bb,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8143007507572461311, guid: 3c0e384da974e324baaf689d858f46bb,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -401,22 +426,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5914988933708239954, guid: 3c0e384da974e324baaf689d858f46bb,
+    - target: {fileID: 5914988934983468268, guid: 3c0e384da974e324baaf689d858f46bb,
         type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5914988933708239954, guid: 3c0e384da974e324baaf689d858f46bb,
+    - target: {fileID: 5914988934983468268, guid: 3c0e384da974e324baaf689d858f46bb,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5914988934983468268, guid: 3c0e384da974e324baaf689d858f46bb,
+    - target: {fileID: 5914988933708239954, guid: 3c0e384da974e324baaf689d858f46bb,
         type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5914988934983468268, guid: 3c0e384da974e324baaf689d858f46bb,
+    - target: {fileID: 5914988933708239954, guid: 3c0e384da974e324baaf689d858f46bb,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -474,21 +499,6 @@ PrefabInstance:
     - target: {fileID: 4337332493909997606, guid: 3c0e384da974e324baaf689d858f46bb,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4337332493628711272, guid: 3c0e384da974e324baaf689d858f46bb,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4337332493628711272, guid: 3c0e384da974e324baaf689d858f46bb,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4337332493628711272, guid: 3c0e384da974e324baaf689d858f46bb,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3587808971210778121, guid: 3c0e384da974e324baaf689d858f46bb,
