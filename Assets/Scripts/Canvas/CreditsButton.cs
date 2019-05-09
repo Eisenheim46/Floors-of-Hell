@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreditsButton : MonoBehaviour
+public class CreditsButton : MonoBehaviour, IInteractable
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Animator menuAnimator;
+    [SerializeField] private GameObject buttonMenu;
+
+
+    public void OnOVRTriggerPressed()
     {
-        
+        menuAnimator.SetTrigger("CreditTrigger");
+
+        buttonMenu.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
